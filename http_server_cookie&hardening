@@ -1,0 +1,47 @@
+Add in Appache Config file ----------------------------------------------
+
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+
+<IfModule mod_headers.c>
+         Header set X-Content-Type-Options nosniff
+         Header set X-XSS-Protection "1; mode=block"
+         Header always set X-FRAME-OPTIONS "SAMEORIGIN"
+         Header append X-Firefox-Spdy "h2"
+         Header append Strict-Transport-Security: 'max-age=31536000; includeSubDomains'
+         Header set Access-Control-Allow-Methods "GET, POST, HEAD"
+         Header set Server " "
+         Header always unset "X-Powered-By"
+         Header unset "X-Powered-By"
+         Header set Access-Control-Allow-Origin "*"
+         Header set Access-Control-Allow-Credentials true
+         Header set Access-Control-Allow-Headers "accept, content-type, X-Requested-With, X-Prototype-Version, X-CSRF-Token, authorization"
+</IfModule>
+
+
+TraceEnable off
+
+
+-------------------------------------------
+Another Syntex----------
+
+RewriteEngine On
+RewriteCond %{THE_REQUEST} !HTTP/1\.1$
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* – [F]
+<IfModule mod_rewrite.c>
+Header always set X-XSS-Protection "1; mode=block"
+#Header set Content-Security-Policy "none"
+Header always set Referrer-Policy "same-origin"
+Header always append X-Frame-Options SAMEORIGIN
+Header always set X-Content-Type-Options: nosniff
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+
+
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+
+
+
