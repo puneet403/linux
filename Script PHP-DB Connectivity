@@ -1,0 +1,42 @@
+PHP Script for check connectivity APP to DB Server 
+
+###################################################
+
+<?php
+$servername = "10.1.0.5";
+$username = "user1";
+$password = "Password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+
+
+
+#####################################################
+
+
+<?php
+$server = 'http://10.1.0.4:3306';
+$dbName = 'mysql';
+$uid = 'user1';
+$pwd = 'password';
+$conn = new PDO("sqlsrv:server=$server; database = $dbName", $uid, $pwd);
+$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+try {
+  $result = $conn->query('SELECT TOP 10 * FROM [mysql].[INFORMATION_SCHEMA].[TABLES]');
+  foreach ($result as $row)
+    {
+      print_r( $row );
+    }
+  } catch (Exception $e) {
+  echo $e->getMessage();
+  }
+?>
+
