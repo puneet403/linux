@@ -1,0 +1,18 @@
+***************** DB query ********************************
+
+SELECT * FROM table_name WHERE field_name LIKE 'a%';
+
+UPDATE dhi_user SET status = '0' WHERE id ='76';
+
+SELECT * FROM dhi_user WHERE status LIKE '0%';
+
+---------------- check db size -------------------
+
+SELECT table_schema AS "Database",  ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS "Size (MB)"  FROM information_schema.TABLES  GROUP BY table_schema;
+
+------------ mysql dump with skiped table -------------
+
+mysqldump -u root -p  --ignore-table=table_name --ignore-table=table_name db_name >/database/db_backup_name.sql
+
+
+
