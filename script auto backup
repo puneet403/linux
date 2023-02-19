@@ -1,0 +1,34 @@
+
+********* For MYSQL DB backup  ************
+
+[root@dbserver1 opt]# cat backup.sh
+#!/bin/bash  (SHell)
+db_name="db_name"   (databse name)
+backup_path="/db_backup"               (path where save db)
+date=$(date +"%d-%b-%Y-%H")            (current date )
+mysqldump -u mysql -pmysql_pass db_name  > /db_backup/db_name$(date +_%m_%d_%y).sql   (mysql backup cmd)
+find /db_backup/* -type f -name 'db_name*' -mtime +7 -exec rm {} \;   (for remove last +7 backup +4back any thing want)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+****************** For rsyn one server to another server within same network ***********************
+
+[root@server2 opt]# cat rsyn.sh
+#!/bin/bash            (shel)
+user="root"            (server user)
+host="10.0.0.1"    ( server ip where you want move)
+password="password"     (server password )
+rsync --remove-source-files -zvh /db_backup/db_name*  root@10.0.0.6:/opt/dbserver_backup/       (for move all db backup to server )
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+crontab 
+
+[root@server1 opt]# crontab -l
+
+03 00 * * * sh /opt/backup.sh    (start backup 12:03am)
+
+
+30      00      *       *       *       sh /opt/rsyn.sh    (rsync cmd ork on 12.30)
+
+
+
