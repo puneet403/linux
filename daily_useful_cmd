@@ -1,0 +1,40 @@
+************* some useful commands for daily use as server administrator -------------
+
+#cat /etc/os-release    For check os version
+
+#php -v	    check php version
+
+#php -m     check php modules
+
+#httpd -v	apache version
+
+#httpd -t   check apache syntex
+
+#free -m    check RAM use in MB
+
+#free -g    check RAM use in GB
+
+#lsblk      check disk space
+
+#df -Th     check disk space in human readble format
+
+#fdisk -l   list of attached disk 
+
+#du -sh or du -sh *     check size of files & folders
+
+#lscpu      check CPU core
+
+#mysql -V   mysql version
+
+#locate <file name or folder> locate file & flder from system DB
+
+#find / -name gsv.txt or #find / -name httpd.conf | grep Directory Name      find the file or folder
+
+#ps -aux |grep service name     check port & service working 
+
+#!net       listen port in machine
+
+#top        CPU utilization pids
+
+#netstat -tunlp     check listen port 
+
