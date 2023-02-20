@@ -40,5 +40,47 @@
 
 #mv filename newfilename    to rename the file name 
 
-##chown root:root /opt/<folder name> 
+#chown root:root /opt/<folder name> 
+
+#chown -R user:user /opt/<folder name>
+
+#rsync -avzPph file/folder root@Ip:destination      to reverse rsync database to app data transfer. (When scp block the db server)
+
+#scp file/folder root@ip:/pathname      secure copy from one server to another server 
+
+#hostname -I        check the hostname
+
+#ipconfig           check the Ip
+
+#getfacl <file/folder name>         to check permission
+
+(set ACL for user)
+#setfacl -m "u:user:permissions" /path/to/file
+Exp:- setfacl -m u:mandeep:rwx test/declarations.h
+
+(set ACL for group)
+#setfacl -m "g:group:permissions" /path/to/file
+
+#getfacl filename                   to check the permission file & folder
+
+#setfacl -b path/to/file            to remove ACL
+
+(to create the cron job)
+#crontab e                                      
+*           *        *          *               *
+Min    hour   date    month   day/week
+
+
+#crontab -l         to check the existing cron jobs
+
+#ssh root@ IP/hostname          take the ssh of the server
+
+#chmod -t <file & folder name>          to apply the sticky bit
+
+#
+
+
+
+
+
 
