@@ -38,3 +38,7 @@
 
 #netstat -tunlp     check listen port 
 
+#mv filename newfilename    to rename the file name 
+
+##chown root:root /opt/<folder name> 
+
