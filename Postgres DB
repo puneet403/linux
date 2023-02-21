@@ -1,0 +1,4 @@
+-------------------------Postgres 
+
+#cd /usr/pgsql-12/bin
+#./pg_dump -U postgres  apeda_tracenet >/tmp/apeda$(date +_%d_%m_%y).sql
