@@ -77,7 +77,32 @@ Min    hour   date    month   day/week
 
 #chmod -t <file & folder name>          to apply the sticky bit
 
-#
+(user administration in linux)
+#useradd <user name>    
+
+#useradd -M <user name>         --without directory
+
+#useradd -s /sbin/nologin <user name>           --without shell
+
+#useradd -N <user name>             --without group
+
+#useradd -m -d /dir path/ -s /bin/bash -U <user name>
+
+#passwd <user name>         --to add/change password
+
+# cat /etc/passwd           -- to show the user list
+
+#chage -I <user name>      -- list the user details 
+
+#chage -E <E date> <user name>       --  set account expire date (data format yyyy-mm-dd)
+
+#chage -M 10 gsv        -- set no. of days password change
+
+#chage -W 5 gsv         -- set warning date of password change
+
+#cat /etc/shadow        -- location of all password save in liux machine
+
+# scp -r <file name> root@<IP address>:/var/www/html/.               --Copy file one server to remote server
 
 
 
