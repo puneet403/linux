@@ -1,0 +1,263 @@
+
+
+
+====================================================================[root@localhost ~]# yum clean all
+Updating Subscription Management repositories.
+Unable to read consumer identity
+This system is not registered to Red Hat Subscription Management. You can use su                                                                             bscription-manager to register.
+23 files removed
+[root@localhost ~]# yum repolist
+Updating Subscription Management repositories.
+Unable to read consumer identity
+This system is not registered to Red Hat Subscription Management. You can use su                                                                             bscription-manager to register.
+Extra Packages for Enterprise Linux 8 - x86_64  2.0 MB/s |  13 MB     00:06
+Packages-1                                       40 MB/s | 5.3 MB     00:00
+Packages-2                                       28 MB/s | 2.2 MB     00:00
+Last metadata expiration check: 0:00:02 ago on Thu 08 Dec 2022 11:04:44 AM IST.
+repo id           repo name                                               status
+AppStream         Packages-1                                              4,672
+BaseOS            Packages-2                                              1,658
+*epel             Extra Packages for Enterprise Linux 8 - x86_64          9,465
+[root@localhost ~]# ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=114 time=96.3 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=114 time=73.7 ms
+^C
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 2ms
+rtt min/avg/max/mdev = 73.684/85.015/96.346/11.331 ms
+[root@localhost ~]#
+[root@localhost ~]# yum install postfix mailx cyrus-sasl cyrus-sasl-plain -y
+Updating Subscription Management repositories.
+Unable to read consumer identity
+This system is not registered to Red Hat Subscription Management. You can use su                                                                             bscription-manager to register.
+Last metadata expiration check: 0:01:52 ago on Thu 08 Dec 2022 11:04:44 AM IST.
+Package cyrus-sasl-2.1.27-0.3rc7.el8.x86_64 is already installed.
+Package cyrus-sasl-plain-2.1.27-0.3rc7.el8.x86_64 is already installed.
+Dependencies resolved.
+================================================================================
+ Package          Arch            Version                 Repository       Size
+================================================================================
+Installing:
+ mailx            x86_64          12.5-29.el8             BaseOS          257 k
+ postfix          x86_64          2:3.3.1-8.el8           BaseOS          1.5 M
+
+Transaction Summary
+================================================================================
+Install  2 Packages
+
+Total size: 1.7 M
+Installed size: 4.9 M
+Downloading Packages:
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1
+  Running scriptlet: postfix-2:3.3.1-8.el8.x86_64                           1/2
+  Installing       : postfix-2:3.3.1-8.el8.x86_64                           1/2
+  Running scriptlet: postfix-2:3.3.1-8.el8.x86_64                           1/2
+  Installing       : mailx-12.5-29.el8.x86_64                               2/2
+  Running scriptlet: mailx-12.5-29.el8.x86_64                               2/2
+  Verifying        : mailx-12.5-29.el8.x86_64                               1/2
+  Verifying        : postfix-2:3.3.1-8.el8.x86_64                           2/2
+Installed products updated.
+
+Installed:
+  mailx-12.5-29.el8.x86_64             postfix-2:3.3.1-8.el8.x86_64
+
+Complete!
+[root@localhost ~]# rpm -qa --last | grep -iE " Thu 08 Dec"
+mailx-12.5-29.el8.x86_64                      Thu 08 Dec 2022 11:06:50 AM IST
+postfix-3.3.1-8.el8.x86_64                    Thu 08 Dec 2022 11:06:45 AM IST
+mysqltuner-1.8.3-1.git.1333ea9.el8.noarch     Thu 08 Dec 2022 09:25:52 AM IST
+mysql-devel-8.0.13-1.module+el8+2558+036183ec.x86_64 Thu 08 Dec 2022 09:25:52 AM                                                                              IST
+mysql-test-8.0.13-1.module+el8+2558+036183ec.x86_64 Thu 08 Dec 2022 09:25:51 AM                                                                              IST
+mysql-server-8.0.13-1.module+el8+2558+036183ec.x86_64 Thu 08 Dec 2022 09:23:41 A                                                                             M IST
+mecab-0.996-1.module+el8+2459+7cb96738.9.x86_64 Thu 08 Dec 2022 09:23:26 AM IST
+perl-Net-HTTP-6.17-2.el8.noarch               Thu 08 Dec 2022 09:23:25 AM IST
+perl-libwww-perl-6.34-1.el8.noarch            Thu 08 Dec 2022 09:23:25 AM IST
+perl-HTTP-Negotiate-6.01-19.el8.noarch        Thu 08 Dec 2022 09:23:25 AM IST
+perl-HTTP-Message-6.18-1.el8.noarch           Thu 08 Dec 2022 09:23:25 AM IST
+perl-HTTP-Cookies-6.04-2.el8.noarch           Thu 08 Dec 2022 09:23:25 AM IST
+perl-HTML-Parser-3.72-14.el8.x86_64           Thu 08 Dec 2022 09:23:25 AM IST
+perl-NTLM-1.09-17.el8.noarch                  Thu 08 Dec 2022 09:23:24 AM IST
+perl-JSON-2.97.001-2.el8.noarch               Thu 08 Dec 2022 09:23:24 AM IST
+perl-IO-HTML-1.001-10.el8.noarch              Thu 08 Dec 2022 09:23:24 AM IST
+perl-IO-Compress-2.081-1.el8.noarch           Thu 08 Dec 2022 09:23:24 AM IST
+perl-HTML-Tagset-3.20-33.el8.noarch           Thu 08 Dec 2022 09:23:24 AM IST
+perl-Env-1.04-395.el8.noarch                  Thu 08 Dec 2022 09:23:24 AM IST
+perl-Digest-SHA-6.02-1.el8.x86_64             Thu 08 Dec 2022 09:23:24 AM IST
+perl-Digest-HMAC-1.03-17.el8.noarch           Thu 08 Dec 2022 09:23:24 AM IST
+perl-Data-Dump-1.23-7.el8.noarch              Thu 08 Dec 2022 09:23:24 AM IST
+perl-Compress-Raw-Bzip2-2.081-1.el8.x86_64    Thu 08 Dec 2022 09:23:24 AM IST
+perl-Test-Simple-1.302135-1.el8.noarch        Thu 08 Dec 2022 09:23:23 AM IST
+perl-Memoize-1.03-416.el8.noarch              Thu 08 Dec 2022 09:23:23 AM IST
+perl-Try-Tiny-0.30-2.el8.noarch               Thu 08 Dec 2022 09:23:22 AM IST
+perl-Time-HiRes-1.9758-1.el8.x86_64           Thu 08 Dec 2022 09:23:22 AM IST
+perl-TimeDate-2.30-13.el8.noarch              Thu 08 Dec 2022 09:23:22 AM IST
+perl-HTTP-Date-6.02-18.el8.noarch             Thu 08 Dec 2022 09:23:22 AM IST
+perl-File-Listing-6.04-17.el8.noarch          Thu 08 Dec 2022 09:23:22 AM IST
+protobuf-lite-3.5.0-7.el8.x86_64              Thu 08 Dec 2022 09:23:21 AM IST
+protobuf-3.5.0-7.el8.x86_64                   Thu 08 Dec 2022 09:23:21 AM IST
+perl-WWW-RobotRules-6.02-18.el8.noarch        Thu 08 Dec 2022 09:23:21 AM IST
+openssl-devel-1.1.1-8.el8.x86_64              Thu 08 Dec 2022 09:23:21 AM IST
+krb5-devel-1.16.1-22.el8.x86_64               Thu 08 Dec 2022 09:23:16 AM IST
+libselinux-devel-2.8-6.el8.x86_64             Thu 08 Dec 2022 09:23:15 AM IST
+libkadm5-1.16.1-22.el8.x86_64                 Thu 08 Dec 2022 09:23:15 AM IST
+libcom_err-devel-1.44.3-2.el8.x86_64          Thu 08 Dec 2022 09:23:15 AM IST
+keyutils-libs-devel-1.5.10-6.el8.x86_64       Thu 08 Dec 2022 09:23:15 AM IST
+pcre2-devel-10.32-1.el8.x86_64                Thu 08 Dec 2022 09:23:14 AM IST
+libverto-devel-0.3.0-5.el8.x86_64             Thu 08 Dec 2022 09:23:14 AM IST
+libsepol-devel-2.8-2.el8.x86_64               Thu 08 Dec 2022 09:23:14 AM IST
+pcre2-utf32-10.32-1.el8.x86_64                Thu 08 Dec 2022 09:23:13 AM IST
+pcre2-utf16-10.32-1.el8.x86_64                Thu 08 Dec 2022 09:23:13 AM IST
+mysql-libs-8.0.13-1.module+el8+2558+036183ec.x86_64 Thu 08 Dec 2022 09:23:13 AM                                                                              IST
+mysql-errmsg-8.0.13-1.module+el8+2558+036183ec.x86_64 Thu 08 Dec 2022 09:23:12 A                                                                             M IST
+mysql-8.0.13-1.module+el8+2558+036183ec.x86_64 Thu 08 Dec 2022 09:23:12 AM IST
+zlib-devel-1.2.11-10.el8.x86_64               Thu 08 Dec 2022 09:23:07 AM IST
+perl-LWP-MediaTypes-6.02-14.el8.noarch        Thu 08 Dec 2022 09:23:07 AM IST
+perl-Encode-Locale-1.05-9.el8.noarch          Thu 08 Dec 2022 09:23:07 AM IST
+mysql-common-8.0.13-1.module+el8+2558+036183ec.x86_64 Thu 08 Dec 2022 09:23:07 A                                                                             M IST
+mariadb-connector-c-config-3.0.7-1.el8.noarch Thu 08 Dec 2022 09:23:07 AM IST
+perl-Compress-Raw-Zlib-2.081-1.el8.x86_64     Thu 08 Dec 2022 09:23:06 AM IST
+gpg-pubkey-2f86d6a1-5cf7cefb                  Thu 08 Dec 2022 09:22:59 AM IST
+[root@localhost ~]# rpm -qa | grep postfix
+postfix-3.3.1-8.el8.x86_64
+[root@localhost ~]# rpm -qa | grep postfix*
+postfix-3.3.1-8.el8.x86_64
+[root@localhost ~]# systemctl  status postfix.service
+● postfix.service - Postfix Mail Transport Agent
+   Loaded: loaded (/usr/lib/systemd/system/postfix.service; disabled; vendor pr>
+   Active: inactive (dead)
+...skipping...
+● postfix.service - Postfix Mail Transport Agent
+   Loaded: loaded (/usr/lib/systemd/system/postfix.service; disabled; vendor pr>
+   Active: inactive (dead)
+lines 1-3/3 (END)...skipping...
+● postfix.service - Postfix Mail Transport Agent
+   Loaded: loaded (/usr/lib/systemd/system/postfix.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+[root@localhost ~]#
+[root@localhost ~]# systemctl  status postfix.service
+● postfix.service - Postfix Mail Transport Agent
+   Loaded: loaded (/usr/lib/systemd/system/postfix.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+[root@localhost ~]# systemctl enable postfix.service --now
+Created symlink /etc/systemd/system/multi-user.target.wants/postfix.service → /usr/lib/systemd/system/postfix.service.
+[root@localhost ~]# systemctl status postfix.service
+● postfix.service - Postfix Mail Transport Agent
+   Loaded: loaded (/usr/lib/systemd/system/postfix.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2022-12-08 11:12:04 IST; 7s ago
+  Process: 44340 ExecStart=/usr/sbin/postfix start (code=exited, status=0/SUCCESS)
+  Process: 44337 ExecStartPre=/usr/libexec/postfix/chroot-update (code=exited, status=0/SUCCESS)
+  Process: 44333 ExecStartPre=/usr/libexec/postfix/aliasesdb (code=exited, status=0/SUCCESS)
+ Main PID: 44409 (master)
+    Tasks: 3 (limit: 17596)
+   Memory: 6.2M
+   CGroup: /system.slice/postfix.service
+           ├─44409 /usr/libexec/postfix/master -w
+           ├─44410 pickup -l -t unix -u
+           └─44411 qmgr -l -t unix -u
+
+Dec 08 11:12:03 localhost.localdomain systemd[1]: Starting Postfix Mail Transport Agent...
+Dec 08 11:12:04 localhost.localdomain postfix/master[44409]: daemon started -- version 3.3.1, configuration /etc/postfix
+Dec 08 11:12:04 localhost.localdomain systemd[1]: Started Postfix Mail Transport Agent.
+[root@localhost ~]# firewall-cmd --permanent --add-service=smtp
+success
+[root@localhost ~]# firewall-cmd --reload
+success
+[root@localhost ~]# vim /etc/postfix/sasl_passwd
+[root@localhost ~]# postmap /etc/postfix/sasl_passwd
+[root@localhost ~]# ls -l /etc/postfix/sasl_passwd*
+-rw-r--r--. 1 root root    65 Dec  8 11:15 /etc/postfix/sasl_passwd
+-rw-r--r--. 1 root root 12288 Dec  8 11:16 /etc/postfix/sasl_passwd.db
+[root@localhost ~]# chmod 600 /etc/postfix/sasl_passwd
+[root@localhost ~]# chmod 600 /etc/postfix/sasl_passwd.db
+[root@localhost ~]# ll
+total 8
+-rw-------. 1 root root 1381 Nov 21 12:51 anaconda-ks.cfg
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Desktop
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Documents
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Downloads
+-rw-r--r--. 1 root root 1536 Nov 21 13:02 initial-setup-ks.cfg
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Music
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Pictures
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Public
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Templates
+drwxr-xr-x. 2 root root    6 Nov 21 13:04 Videos
+[root@localhost ~]# ls -l /etc/postfix/sasl_passwd*
+-rw-------. 1 root root    65 Dec  8 11:15 /etc/postfix/sasl_passwd
+-rw-------. 1 root root 12288 Dec  8 11:16 /etc/postfix/sasl_passwd.db
+[root@localhost ~]# vim /etc/postfix/main.cf
+[root@localhost ~]# systemctl restart postfix.service
+[root@localhost ~]# mail -s "Test Email 1" sumitpanda289@gmail.com
+Thanks for your help.
+EOT
+[root@localhost ~]# mail -s "Test Email 1" anita.maurya@velocis.co.in
+Thanks for your help.
+EOT
+[root@localhost ~]# mail -s "Test Email 1" jatin.kumar@velocis.co.in
+Summit Kumar Panda from velocis.
+EOT
+[root@localhost ~]#
+
+
+
+
+[root@localhost ~]# history
+    1  yum clean all
+    2  yum repolist
+    3  ping 8.8.8.8
+    4  yum install postfix mailx cyrus-sasl cyrus-sasl-plain -y
+    5  rpm -qa --last | grep -iE " Thu 08 Dec"
+    6  rpm -qa | grep postfix
+    7  rpm -qa | grep postfix*
+    8  systemctl  status postfix.service
+    9  systemctl enable postfix.service --now
+   10  systemctl status postfix.service
+   11  firewall-cmd --permanent --add-service=smtp
+   12  firewall-cmd --reload
+   13  vim /etc/postfix/sasl_passwd
+   14  postmap /etc/postfix/sasl_passwd
+   15  ls -l /etc/postfix/sasl_passwd*
+   16  chmod 600 /etc/postfix/sasl_passwd
+   17  chmod 600 /etc/postfix/sasl_passwd.db
+   18  ll
+   19  ls -l /etc/postfix/sasl_passwd*
+   20  vim /etc/postfix/main.cf
+   21  systemctl restart postfix.service
+   22  mail -s "Test Email 1" sumitpanda289@gmail.com
+   23  mail -s "Test Email 1" anita.maurya@velocis.co.in
+   24  mail -s "Test Email 1" jatin.kumar@velocis.co.in
+   25  history
+********************************************************************************************************************
+vim /etc/postfix/sasl_passwd
+[smtp.gmail.com]:587 summitpanda9853@gmail.com:password of your mail
+
+
+*********************************************************************************************************************
+vim /etc/postfix/main.cf
+
+#smtp_tls_CAfile = /etc/pki/tls/certs/ca-bundle.crt
+
+# Use TLS if this is supported by the remote SMTP server, otherwise use
+# plaintext (opportunistic TLS outbound).
+#
+smtp_tls_security_level = may
+meta_directory = /etc/postfix
+shlib_directory = /usr/lib64/postfix
+
+
+
+readme_directory = /usr/share/doc/postfix/README_FILES
+
+relayhost = [smtp.gmail.com]:587
+smtp_use_tls = yes
+smtp_sasl_auth_enable = yes
+smtp_sasl_security_options =
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_tls_CAfile = /etc/ssl/certs/ca-bundle.crt
+*****************************************************************************************************************************
+=======================================================================================================================================================
