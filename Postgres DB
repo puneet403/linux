@@ -1,5 +1,6 @@
 -------------------------Postgres 
 
+#cd /var/lib/pgsql/12/data/  >> ll   >> vim pg_hba.conf  (go to last and change the value PEER to md5)
 #cd /usr/pgsql-12/bin
 #./pg_dump -U postgres  apeda_tracenet >/tmp/apeda$(date +_%d_%m_%y).sql
 #./psql -U postgres -p 5432 db_name </opt/db_name.sql
