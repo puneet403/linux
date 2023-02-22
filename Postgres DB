@@ -1,4 +1,4 @@
--------------------------Postgres 
+-------------------------Postgres DB CMD -------------------------------------------------------
 
 #su - postgres 
 #systemctl status postgresql-12.service
@@ -9,3 +9,13 @@
 
 #ps -aux |grep postgres
 
+-------------------------change the database directory location --------------
+#sudo -u postgres psql
+#SHOW data_directory;
+#sudo systemctl stop postgresql
+#sudo systemctl status postgresql
+#sudo rsync -av /var/lib/postgresql /mnt/volume-nyc1-01    ------change the directory of PSQL DB
+#sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main.bak  
+#sudo nano /etc/postgresql/9.5/main/postgresql.conf   -----Pointing to the New Data Location
+#sudo systemctl start postgresql
+#sudo systemctl status postgresql
