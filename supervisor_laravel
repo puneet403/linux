@@ -42,3 +42,50 @@ user=root
 numprocs=8
 redirect_stderr=true
 stdout_logfile=/var/log/supervisor/laravel-queue.log
+
+
+1. Install Supervisor in Linux
+
+    Python pip:  sudo pip install supervisor
+    Ubuntu: sudo apt-get install supervisor
+    CentOS: yum install -y supervisor
+
+2. Configure Supervisor
+
+2.1 After it is installed, supervisord.conf  is in /etc. If not, run echo_supervisord_conf > /etc/supervisord.conf to create one.
+
+2.2 Run mkdir /etc/supervisor/ to create a directory to save configuration files. Go to this directory and run touch laravel-worker.conf. Then laravel-worker.conf is created. Edit this file and enter the configuration as shown below.
+
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /www/wwwroot/ly_blog/code//laravel_blog/artisan queue:work --tries=3
+autostart=true
+autorestart=true
+user=root
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/laravel-queue.log
+
+2.3 Save the file, then go to the end of supervisord.conf and change the path as shown below.
+
+[include]
+files = /etc/supervisor/laravel-worker.conf
+
+Note: Remove  ; .
+3. Start Supervisor
+
+Run supervisord -c /etc/supervisord.conf. If it is started, use ps -ef to check PID and kill to finish the task.
+4. Listen tasks and keep the queue running
+
+Run the following commends one by one.
+
+sudo supervisorctl reread -- Restart all prgrams in configuration files
+sudo supervisorctl update -- Update configurations to supervisord
+
+sudo supervisorctl start laravel-worker:* -- Start a prgram (program_name=the program name you configured)
+
+Note: In case of laravel-worker: ERROR (no such group), check whether the path is /etc/supervisor/laravel-worker.conf and whether the admin account is user=root.
+
+5. Check the status of Supervisor
+
+Run supervisorctl status to check the status.
