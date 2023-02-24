@@ -1,0 +1,44 @@
+
+yum install -y supervisor
+vim /etc/supervisord.conf
+mkdir /etc/supervisor/
+cd /etc/supervisor
+ll
+touch laravel-worker.conf
+ll
+vim laravel-worker.conf
+ll
+cd
+vim /etc/supervisord.conf
+upervisord -c /etc/supervisord.conf
+ps -ef
+ps -ef |grep supervisor
+kill 1194294
+cd /etc/supervisor
+sudo service supervisor start
+sudo systemctl start supervisord
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start laravel-worker:*
+php artisan queue:listen
+cd /var/www/html/App/
+php artisan queue:listen
+vim /etc/supervisord
+cd /etc/supervisord
+cd /etc/supervisor
+ll
+vim laravel-worker.conf
+
+php artisan queue:restart
+
+---------------------
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+#command=php /www/www/html/appname/artisan queue:work --tries=3
+command=php /var/www/html/appname/artisan queue:work database --sleep=3 --tries=3 --deamon
+autostart=true
+autorestart=true
+user=root
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/laravel-queue.log
