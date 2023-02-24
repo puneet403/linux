@@ -43,6 +43,9 @@ numprocs=8
 redirect_stderr=true
 stdout_logfile=/var/log/supervisor/laravel-queue.log
 
+----------------------------------------------
+php artisan queue:listent
+
 -------------------------------------------------------- installation Help ------------------------------
 1. Install Supervisor in Linux
 
