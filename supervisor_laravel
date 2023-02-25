@@ -1,3 +1,4 @@
+---------Configuration of supervisor schedular to do some auto task in Laravel Web ------------
 
 yum install -y supervisor
 vim /etc/supervisord.conf
@@ -44,9 +45,9 @@ redirect_stderr=true
 stdout_logfile=/var/log/supervisor/laravel-queue.log
 
 ----------------------------------------------
-php artisan queue:listent
+php artisan queue:listent (to run the queue task manually)
 
--------------------------------------------------------- installation Help ------------------------------
+-------------------------installation Help ------------------------------
 1. Install Supervisor in Linux
 
     Python pip:  sudo pip install supervisor
