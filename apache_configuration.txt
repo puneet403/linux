@@ -9,7 +9,12 @@ cd /var/www/html
 
 #vim /etc/httpd/conf/httpd.conf
 -------------------------------------------
+>>> HTTPS Redirection from Apache
+RewriteEngine On
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
+>>> Virtual Hosting 
 <VirtualHost *:80>
 ServerName testdomain.org
 ServerName www.testdomain.org

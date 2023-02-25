@@ -1,0 +1,8 @@
+
+@date_default_timezone_set('Asia/Kolkata');
+ini_set('memory_limit', '1024M'); // Quite extreme value.
+ini_set('post_max_size', '50M');
+ini_set('upload_max_filesize', '50M');
+ini_set('max_file_uploads', 20);
+ini_set('max_input_time', 60);
+ini_set('auto_detect_line_endings', true);
