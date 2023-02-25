@@ -1,0 +1,132 @@
+------------------Laravel Website Deployment on CentOS Public Cloud----------------------------------
+Server version: Apache/2.4.6 (CentOS)
+PHP version: PHP 7.4.33 (cli)
+-------------------------------------------------
+[PHP Modules] on default installation******
+bz2,calendar,Core,ctype,curl,date,exif,fileinfo,filter,ftp,gd,gettext,hash,iconv,json,libxml,mcrypt,mysqli,mysqlnd,openssl,pcntl,pcre,
+PDO,pdo_mysql,pdo_sqlite,Phar,readline,Reflection,session,sockets,sodium,SPL,sqlite3,standard,tokenizer,Zend OPcache,zip,zlib
+[Zend Modules]
+Zend OPcache
+--------------------------------------------------
+
+yum install httpd
+systemctl enable httpd
+systemctl start httpd
+systemctl status httpd
+curl localhost
+----Public_IP on Browser to test the page 
+yum install epel-release yum-utils -y
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+yum-config-manager --enable remi-php74
+yum install php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysql -y
+yum search php | more
+php -v
+php -m
+cd /var/www/html/
+vim info.php
+systemctl restart httpd
+unzip /tmp/project.zip -d /var/www/html/.
+yum install zip unzip wget telnet scp nslookup host openssh-clients man locate -y
+unzip /tmp/project.zip -d /var/www/html/.
+cp -rf /tmp/project.zip /var/www/html/.
+cd html/
+ll
+unzip project.zip .
+du -sh *
+cat /etc/os-release
+ping DB_IP
+telnet DB_IP 3306
+cd /var/www/html/project
+ll
+ll -la
+vim .env
+yum install php-cli php-zip wget unzip
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+composer
+php -r “unlink(‘composer-setup.php’);”
+cd ..
+ll
+cd project
+ll
+composer update
+php artisan optimize:clear
+ll
+cd bootstrap/
+ll
+sudo chmod -R 777 cache/
+--->(Set 777 permission to public,storage,bootstrap folders)
+ll
+cd ..
+php artisan optimize:clear
+cd ..
+vim /etc/httpd/conf/httpd.conf
+sudo -i
+cd ~
+getenforce (for public cloud)
+setenforce 1
+setenforce 0
+sestatus
+vim /etc/selinux/config
+sestatus
+
+
+---------------------------- My SQL 8 DB Server Setup on Public Cloud ---------------
+MYSQL Version: mysql  Ver 8.0.32 for Linux on x86_64 (MySQL Community Server - GPL)
+
+yum update
+sudo yum install zip unzip wget telnet scp nslookup host openssh-clients
+sudo wget https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+yum localinstall mysql80-community-release-el7-1.noarch.rpm
+yum repolist enabled | grep "mysql.*-community.*"
+yum install mysql-community-server
+systemctl enable mysqld.service
+service mysqld start
+rpm -qa |grep mysql
+yum install mysql-community-server*
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 (if not restarted the mysql server)
+yum update
+service mysqld start
+locate mysql
+find / -name mysql
+-----if not started again then -----
+yum localinstall mysql80-community-release-el7-1.noarch.rpm 
+yum repolist enabled | grep "mysql.*-community.*"
+yum install mysql-community-server*
+yum install mysql-community-server
+service mysqld start
+systemctl enable mysqld.service
+systemctl status mysqld
+systemctl status mysqld.service
+mysql -V
+grep 'temporary password' /var/log/mysqld.log
+mysql_secure_installation
+mysql -u root -p
+vim /etc/my.cnf
+systemctl restart mysqld
+systemctl status mysqld.service
+systemctl restart mysqld.service
+mysql -u root -p
+\q
+cd /tmp/
+ll
+du -sh *
+vim db_name_23_02_2023.sql
+mysql -u root -p db_name < /tmp/db_name_24_02_2023.sql
+mysql -u root -p (after login perform the DB activity as required) -------------
+ps -aux |grep mysql
+
+----------------- After login in MY SQL create the DB & grant permission to user ------------------------
+show databases;
+create database db_name;
+show databases;
+create user 'user1'@'%' indentified by'password';
+grant all privileges on *.* to 'user1'@'%';
+show grants for 'user1'@'%';
+flush privileges;
+show databases;
+use db_name;
+show tables;
+\q 
