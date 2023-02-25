@@ -20,5 +20,53 @@ sed -i 's/utf8mb4_0900_ai_ci/utf8_general_ci/g'  /opt/db_name.sql
 
 sed -i 's/CHARSET=utf8mb4/CHARSET=utf8/g' /opt/db_name.sql
 
+------------------------------------------------------------------
+Get the Size for all Databases (View the size of all databases with the following query):
+
+SELECT TABLE_SCHEMA AS `Database`,
+ROUND(SUM(DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024, 2) AS `Size (MB)`
+FROM information_schema.TABLES
+GROUP BY TABLE_SCHEMA
+ORDER BY SUM(DATA_LENGTH + INDEX_LENGTH) DESC;
+
+-------------------------------------------------------------------
+
+Get Table Size for All Databases (Show table sizes for all databases with):
+
+SELECT TABLE_SCHEMA AS `Database`,
+TABLE_NAME AS `Table`,
+ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024) AS `Size (MB)`
+FROM information_schema.TABLES
+ORDER BY (DATA_LENGTH + INDEX_LENGTH) DESC;
 
 
+-------------------------------------------------------------------
+
+Get the Size for a Single Database (Use the SELECT statement to get the size of a single database):
+
+SELECT TABLE_SCHEMA AS `Database`,
+ROUND(SUM(DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024, 2) AS `Size (MB)`
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA="&lt;database name&gt;";
+
+
+-------------------------------------------------------------------
+
+Get Table Size for a Single Database (List table sizes for a single database by using):
+
+SELECT TABLE_NAME AS `Table`,
+ROUND(((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024), 2) AS `Size (MB)`
+FROM information_schema.TABLES
+WHERE table_schema = "&lt;database name&gt;"
+ORDER BY (data_length + index_length) DESC;
+
+
+--------------------------------------------------------------------
+
+Get Table Size for All Databases (Show table sizes for all databases with):
+
+SELECT TABLE_SCHEMA AS `Database`,
+TABLE_NAME AS `Table`,
+ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024) AS `Size (MB)`
+FROM information_schema.TABLES
+ORDER BY (DATA_LENGTH + INDEX_LENGTH) DESC;

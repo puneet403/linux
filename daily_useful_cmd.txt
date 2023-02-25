@@ -116,9 +116,28 @@ Then run the below commands================
 
 ---------------------
 
+ ############# free cache from linux machine #################
+ echo 3 > /proc/sys/vm/drop_caches
 
 
+############## rsync data one to another server ################
 
+rsync -avzPph /var/www/html/db_name root@0.0.0.0:/data
+rsync -avzPph db_19_12_22    root@0.0.0.0:/data
+mysqldump -uroot -p uprvnl_web > /data/databackup/db_19_12_22/db_name.sql
+scp  uprvnl_web_12_19_22.sql root@0.0.0.0:/data
+df -h /var/www/html/db_name
+>>>>>>>>> add scripts >>>
+00 09 * * * /bin/sh /opt/backup.sh
+00 06 * * * /bin/sh /opt/clearcache.sh
+
+######### Backup code for DR Server ################
+00      15      16      12      * sh /opt/dr_backup.sh
+
+ scp /home/hosts 0.0.0.0:/home/
+
+route add -net 0.0.0.0 netmask 255.255.255.255 gw 0.0.0.0
+route add -net 10.27.64.0/24 netmask 255.255.255.255 gw 0.0.0.0
 
 
 

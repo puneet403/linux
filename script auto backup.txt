@@ -32,3 +32,33 @@ crontab
 
 
 
+---------------------------------------------------------------------------
+
+
+
+database server IP : -----
+crontab -l
+00 02 * * * /opt/backup.sh
+*/30 * * * * /opt/clearcache.sh >/tmp/clearcache.log
+
+# crontab -l
+00 03 * * * /opt/autofile.sh >> /opt/autofile.log
+#01 20 * * * /opt/stop_tomcat.sh
+#00 05 * * * /opt/start_tomcat.sh
+0,30 * * * * /opt/McAfee/agent/scripts/ma checkhealth >/dev/null 2>/dev/null
+0 1 * * * sh /buffer_clear.sh
+*/60 * * * * sh /new.sh  >>/log202.txt
+
+
+# crontab -l
+00 02 * * * /usr/bin/rsync -avzh /var/www/html/* root@server_IP:/app_backup > /tmp/sync.log
+
+crontab -l
+00 00 * * * sh /opt/backup.sh
+
+# crontab -l
+0 23 * * * /etc/cron.daily/script.sh
+
+
+
+
