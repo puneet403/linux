@@ -104,6 +104,19 @@ Min    hour   date    month   day/week
 
 # scp -r <file name> root@<IP address>:/var/www/html/.               --Copy file one server to remote server
 
+#zip -r  /path/to/save/destination_folder.zip /path/to/folder
+
+-------------------
+For restoring default permissions of file and folders if applied the full (777) on any project.
+Go inside the project location :
+Then run the below commands================
+
+#sudo find . -type f -exec chmod 664 {} \;  
+#sudo find . -type d -exec chmod 775 {} \;
+
+---------------------
+
+
 
 
 

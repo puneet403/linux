@@ -1,0 +1,46 @@
+-------------------------Postgres DB CMD -------------------------------------------------------
+
+#su - postgres 
+#systemctl status postgresql-12.service
+#cd /var/lib/pgsql/12/data/  >> ll   >> vim pg_hba.conf  (go to last and change the value PEER to md5)
+#cd /usr/pgsql-12/bin
+#./pg_dump -U postgres  apeda_tracenet >/tmp/apeda$(date +_%d_%m_%y).sql
+#./psql -U postgres -p 5432 db_name </opt/db_name.sql
+
+#ps -aux |grep postgres
+
+-------------------- remote access for pqsl server -------------------
+#netstat -tunpl
+#firewall-cmd --permanent --add-port=5432/tcp
+#firewall-cmd --reload
+#ps -aux | grep postgres
+#cd /var/lib/pgsql/12/data/
+#vim pg_hba.conf
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+host    all             all             177.166.3.98/24         md5
+# IPv6 local connections:
+host    all             all             ::1/128                 md5
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+local   replication     all                                     peer
+host    replication             all             127.0.0.1/32            ident
+host    replication             all             ::1/128                 ident
+
+
+#./systemctl restart postgresql-12
+
+
+-------------------------change the database directory location --------------
+#sudo -u postgres psql
+#SHOW data_directory;
+#sudo systemctl stop postgresql
+#sudo systemctl status postgresql
+#sudo rsync -av /var/lib/postgresql /mnt/volume-nyc1-01    ------change the directory of PSQL DB
+#sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main.bak  
+#sudo nano /etc/postgresql/9.5/main/postgresql.conf   -----Pointing to the New Data Location
+#sudo systemctl start postgresql
+#sudo systemctl status postgresql
