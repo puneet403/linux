@@ -75,7 +75,7 @@ Min    hour   date    month   day/week
 
 #ssh root@ IP/hostname          take the ssh of the server
 
-#chmod -t <file & folder name>          to apply the sticky bit
+#chmod +t <file & folder name>          to apply the sticky bit
 
 (user administration in linux)
 #useradd <user name>    
